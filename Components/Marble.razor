@@ -1,0 +1,12 @@
+@using System.ComponentModel
+<MudChip Color="@Color" Class="marble-chip" OnClick="Clicked" Size="Size.Large">
+    @ChildContent
+</MudChip>
+
+@code {
+    [Parameter, EditorRequired] public required Color Color { get; set; }
+    [Parameter, EditorRequired] public required RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public EventCallback Clicked { get; set; }
+}
