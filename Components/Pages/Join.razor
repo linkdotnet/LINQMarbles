@@ -51,16 +51,14 @@
         </div>
     </InputPanel>
     <OutputPanel>
-        <div class="centered-content">
-            @foreach (var joined in _marbles1.Join(
-                _marbles2,
-                item1 => item1.Number,
-                item2 => item2.Number,
-                (item1, item2) => new { item1.Number, item1.Color, Content = item1.Content + item2.Content }))
-            {
-                <Marble Color="joined.Color">@joined.Number,@joined.Content</Marble>
-            }
-        </div>
+        @foreach (var joined in _marbles1.Join(
+            _marbles2,
+            item1 => item1.Number,
+            item2 => item2.Number,
+            (item1, item2) => new { item1.Number, item1.Color, Content = item1.Content + item2.Content }))
+        {
+            <Marble Color="joined.Color">@joined.Number,@joined.Content</Marble>
+        }
     </OutputPanel>
 </PageContainer>
 
