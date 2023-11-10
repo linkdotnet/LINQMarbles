@@ -1,0 +1,46 @@
+<MudCard Class="marbles-card">
+    <MudCardContent>
+        <MudGrid>
+            <MudItem xs="12">
+                <MudStack Row="true" Justify="Justify.Center">
+                    @InputPanel
+                </MudStack>
+            </MudItem>
+            <MudItem xs="12">
+                <MudPaper Elevation="3" Class="section-card">
+                    <MudText Typo="Typo.h3" Class="function">@OperatorText</MudText>
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="12">
+                <MudStack Row="true" Justify="Justify.Center">
+                    <ErrorBoundary>
+                        <ChildContent>
+                            @OutputPanel
+                        </ChildContent>
+                        <ErrorContent>
+                            @if (ErrorPanel is not null)
+                            {
+                                <div style="display: block">
+                                    @ErrorPanel(@context)
+                                </div>
+                            }
+                        </ErrorContent>
+                    </ErrorBoundary>
+                </MudStack>
+            </MudItem>
+        </MudGrid>
+    </MudCardContent>
+</MudCard>
+@code {
+    [Parameter, EditorRequired]
+    public required string OperatorText { get; set; }
+
+    [Parameter, EditorRequired]
+    public required RenderFragment InputPanel { get; set; }
+    
+    [Parameter, EditorRequired]
+    public required RenderFragment OutputPanel { get; set; }
+    
+    [Parameter]
+    public RenderFragment<Exception>? ErrorPanel { get; set; }
+}

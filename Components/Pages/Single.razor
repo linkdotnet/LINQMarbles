@@ -1,0 +1,54 @@
+@page "/single"
+<PageContainer OperatorText="Single(n => n > 3)">
+    <InputPanel>
+         @foreach (var marble in _marbles)
+         {
+             <Marble Color="marble.Color">@marble.Number</Marble>
+         }
+         <Marble Color="@Color.Primary" Clicked="@(() => _showPopover = true)">
+             <span>+</span>
+             <MudPopover Open="@_showPopover" AnchorOrigin="Origin.BottomRight">
+                 <div class="d-flex flex-column">
+                     <MudInput T="int" @bind-Value="@_number" 
+                               AdornmentIcon="@Icons.Material.Filled.Add"
+                               Adornment="Adornment.Start" 
+                               OnAdornmentClick="AddNumber"/>
+                 </div>
+             </MudPopover>
+         </Marble>
+    </InputPanel>
+    <OutputPanel>
+        <Marble Color="_marbles.Single(n => n.Number > 3).Color">@(_marbles.Single(n => n.Number > 3).Number)</Marble>
+    </OutputPanel>
+    <ErrorPanel>
+        <div >
+        <Marble Color="Color.Error"><MudIcon Icon="@Icons.Material.Filled.ElectricBolt"></MudIcon></Marble>
+        </div>
+        <MudStack>
+            <MudDivider/>
+            <MudText Typo="Typo.h6">Exception:</MudText>
+            <MudText Typo="Typo.subtitle1" Style="text-align: left">@context.Message</MudText>
+        </MudStack>
+    </ErrorPanel>
+</PageContainer>
+
+@code {
+    private readonly List<MarbleModel> _marbles = new()
+    {
+        new(1),
+        new(2), 
+        new(3), 
+        new(4)
+    };
+
+    private bool _showPopover;
+    private int _number = 5;
+    
+    private void AddNumber()
+    {
+        _marbles.Add(new MarbleModel(_number));
+        _number = 0;
+        _showPopover = false;
+    }
+
+}

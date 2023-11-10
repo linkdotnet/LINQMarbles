@@ -1,7 +1,6 @@
-﻿@page "/"
-@page "/where"
+﻿@page "/select"
 
-<PageContainer OperatorText="Where(n => n % 2 == 0)">
+<PageContainer OperatorText="Select(n => n * 2)">
     <InputPanel>
         @foreach (var marble in _marbles)
         {
@@ -20,13 +19,12 @@
         </Marble>
     </InputPanel>
     <OutputPanel>
-        @foreach (var marble in _marbles.Where(m => m.Number % 2 == 0))
+        @foreach (var marble in _marbles)
         {
-            <Marble Color="marble.Color">@marble.Number</Marble>
+            <Marble Color="marble.Color">@(marble.Number * 2)</Marble>
         }
     </OutputPanel>
 </PageContainer>
-
 @code {
     private readonly List<MarbleModel> _marbles = new()
     {
@@ -38,7 +36,7 @@
 
     private bool _showPopover;
     private int _number = 5;
-
+    
     private void AddNumber()
     {
         _marbles.Add(new MarbleModel(_number));
