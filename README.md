@@ -6,6 +6,7 @@ It is based on the [Rx Marbles](http://rxmarbles.com/) project, that inspired me
 ## Features
 - Interactive diagrams for LINQ operators
 - Add items to collections and see the results in real time!
+- PWA (Progressive Web App) support
 
 ## Contributing
 Feel free to file issues and pull requests on the repo and I'll take a look at them as soon as I can. Help is always welcome!

@@ -12,10 +12,14 @@
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0-rc.2.23480.2" PrivateAssets="all" />
         <PackageReference Include="MudBlazor" Version="6.11.0" />
     </ItemGroup>
+    
+    <PropertyGroup>
+        <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+    </PropertyGroup>
 
     <ItemGroup>
-      <_ContentIncludedByDefault Remove="wwwroot\css\bootstrap\bootstrap.min.css" />
-      <_ContentIncludedByDefault Remove="wwwroot\css\bootstrap\bootstrap.min.css.map" />
+        <ServiceWorker Include="wwwroot/service-worker.js"
+                       PublishedContent="wwwroot/aservice-worker.published.js" />
     </ItemGroup>
-
+    
 </Project>
