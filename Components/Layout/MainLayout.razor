@@ -8,11 +8,17 @@
         <MudText Typo="Typo.h4">LINQ Marbles</MudText>
         <MudSpacer/>
         <MudButton StartIcon="@Icons.Custom.Brands.GitHub" Href="https://github.com/linkdotnet/LINQMarbles" Target="_blank">GitHub</MudButton>
-        </MudAppBar>
+    </MudAppBar>
     <MudDrawer Open="@true" ClipMode="DrawerClipMode.Docked" Elevation="0" Breakpoint="Breakpoint.Lg">
         <NavMenu></NavMenu>
     </MudDrawer>
-    <MudMainContent>
-        @Body
-    </MudMainContent>
+    <MudContainer Style="display: flex; flex-direction: column; height: 100vh;">
+        <MudMainContent Style="flex-grow: 1;">
+            @Body
+        </MudMainContent>
+        <footer>
+            <MudText Typo="Typo.caption" Class="d-block d-flex align-center justify-center" Align="Align.Center"><span>©2023 <a href="https://steven-giesel.com" target="_blank">Steven Giesel</a> // <a href="https://giesel.engineering" target="_blank">Giesel Engineering</a></span></MudText>
+            <MudText Typo="Typo.caption" Class="d-block d-flex align-center justify-center" Align="Align.Center">Made with <MudIcon Icon="@Icons.Material.Outlined.FavoriteBorder" Size="Size.Small"></MudIcon>, <MudIcon Icon="@CustomIcons.Triforce" Size="Size.Small"></MudIcon> and .NET 8 and Blazor</MudText>
+        </footer>
+    </MudContainer>
 </MudLayout>
