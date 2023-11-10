@@ -5,6 +5,11 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <LangVersion>preview</LangVersion>
+        <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+        <TrimmerRemoveSymbols>true</TrimmerRemoveSymbols>
+        <EventSourceSupport>false</EventSourceSupport>
+        <StackTraceSupport>false</StackTraceSupport>
+        <WasmEnableExceptionHandling>true</WasmEnableExceptionHandling>
     </PropertyGroup>
 
     <ItemGroup>
