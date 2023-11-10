@@ -9,7 +9,6 @@
         <TrimmerRemoveSymbols>true</TrimmerRemoveSymbols>
         <EventSourceSupport>false</EventSourceSupport>
         <StackTraceSupport>false</StackTraceSupport>
-        <WasmEnableExceptionHandling>true</WasmEnableExceptionHandling>
     </PropertyGroup>
 
     <ItemGroup>
