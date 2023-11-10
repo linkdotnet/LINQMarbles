@@ -28,9 +28,7 @@
                     <MudIcon Icon="@Icons.Material.Filled.ArrowCircleRight"/>
                     @foreach (var element in group)
                     {
-                        <span class="array">
-                            <Marble Color="element.Color">@element.Number,@element.Content</Marble>
-                        </span>
+                        <Marble Color="element.Color">@element.Number,@element.Content</Marble>
                     }
                 </span>
             }
