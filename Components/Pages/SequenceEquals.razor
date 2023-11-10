@@ -1,0 +1,74 @@
+﻿@page "/sequence-equals"
+
+<PageContainer OperatorText="SequenceEqual()">
+    <InputPanel>
+        <div class="array">
+            @foreach (var marble in _marbles1)
+            {
+                <Marble Color="marble.Color">@marble.Number</Marble>
+            }
+            <Marble Color="@Color.Primary" Clicked="@(() => _showPopover1 = true)">
+                <span>+</span>
+                <MudPopover Open="@_showPopover1" AnchorOrigin="Origin.BottomRight">
+                    <div class="d-flex flex-column">
+                        <MudInput T="int" @bind-Value="@_number"
+                                  AdornmentIcon="@Icons.Material.Filled.Add"
+                                  Adornment="Adornment.Start"
+                                  OnAdornmentClick="AddNumberToFirstList"/>
+                    </div>
+                </MudPopover>
+            </Marble>
+        </div>
+        <div class="array">
+            @foreach (var marble in _marbles2)
+            {
+                <Marble Color="marble.Color">@marble.Number</Marble>
+            }
+            <Marble Color="@Color.Primary" Clicked="@(() => _showPopover2 = true)">
+                <span>+</span>
+                <MudPopover Open="@_showPopover2" AnchorOrigin="Origin.BottomRight">
+                    <div class="d-flex flex-column">
+                        <MudInput T="int" @bind-Value="@_number"
+                                  AdornmentIcon="@Icons.Material.Filled.Add"
+                                  Adornment="Adornment.Start"
+                                  OnAdornmentClick="AddNumberToSecondList"/>
+                    </div>
+                </MudPopover>
+            </Marble>
+        </div>
+    </InputPanel>
+    <OutputPanel>
+        <MudText Typo="Typo.h4">@_marbles1.SequenceEqual(_marbles2)</MudText>
+    </OutputPanel>
+</PageContainer>
+
+@code {
+    private readonly List<MarbleModel> _marbles1 = new()
+    {
+        new(1) { Color = Color.Secondary },
+        new(3) { Color = Color.Secondary },
+    };
+    
+    private readonly List<MarbleModel> _marbles2 = new()
+    {
+        new(1) { Color = Color.Secondary },
+    };
+
+    private bool _showPopover1;
+    private bool _showPopover2;
+    private int _number = 3;
+
+    private void AddNumberToFirstList()
+    {
+        _marbles1.Add(new MarbleModel(_number) { Color = Color.Secondary });
+        _number = 0;
+        _showPopover1 = false;
+    }
+    
+    private void AddNumberToSecondList()
+    {
+        _marbles2.Add(new MarbleModel(_number) { Color = Color.Secondary });
+        _number = 0;
+        _showPopover2 = false;
+    }
+}

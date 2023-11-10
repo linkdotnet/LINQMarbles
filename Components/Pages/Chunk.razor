@@ -1,0 +1,52 @@
+﻿@page "/chunk"
+
+<PageContainer OperatorText="Chunk(2)">
+    <InputPanel>
+        @foreach (var marble in _marbles)
+        {
+            <Marble Color="marble.Color">@marble.Number</Marble>
+        }
+        <Marble Color="@Color.Primary" Clicked="@(() => _showPopover = true)">
+            <span>+</span>
+            <MudPopover Open="@_showPopover" AnchorOrigin="Origin.BottomRight">
+                <div class="d-flex flex-column">
+                    <MudInput T="int" @bind-Value="@_number" 
+                              AdornmentIcon="@Icons.Material.Filled.Add"
+                              Adornment="Adornment.Start" 
+                              OnAdornmentClick="AddNumber"/>
+                </div>
+            </MudPopover>
+        </Marble>
+    </InputPanel>
+    <OutputPanel>
+        @foreach (var marbles in _marbles.Chunk(2))
+        {
+            <div class="array">
+                @foreach (var marble in marbles)
+                {
+                    <Marble Color="marble.Color">@marble.Number</Marble>
+                }
+            </div>
+        }
+    </OutputPanel>
+</PageContainer>
+
+@code {
+    private readonly List<MarbleModel> _marbles = new()
+    {
+        new(1),
+        new(3), 
+        new(2), 
+        new(4)
+    };
+
+    private bool _showPopover;
+    private int _number = 5;
+
+    private void AddNumber()
+    {
+        _marbles.Add(new MarbleModel(_number));
+        _number = 0;
+        _showPopover = false;
+    }
+}
