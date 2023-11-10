@@ -1,0 +1,45 @@
+﻿@page "/average"
+
+<PageContainer OperatorText="Average()">
+    <InputPanel>
+        @foreach (var marble in _marbles)
+        {
+            <Marble Color="marble.Color">@marble.Number</Marble>
+        }
+        <Marble Color="@Color.Primary" Clicked="@(() => _showPopover = true)">
+            <span>+</span>
+            <MudPopover Open="@_showPopover" AnchorOrigin="Origin.BottomRight">
+                <div class="d-flex flex-column">
+                    <MudInput T="int" @bind-Value="@_number" 
+                              AdornmentIcon="@Icons.Material.Filled.Add"
+                              Adornment="Adornment.Start" 
+                              OnAdornmentClick="AddNumber"/>
+                </div>
+            </MudPopover>
+        </Marble>
+    </InputPanel>
+    <OutputPanel>
+        <MudText Typo="Typo.h4">@_marbles.Average(s => s.Number)</MudText>
+    </OutputPanel>
+</PageContainer>
+
+@code {
+    private readonly List<MarbleNumberModel> _marbles = new()
+    {
+        new(1),
+        new(2), 
+        new(3), 
+        new(4)
+    };
+
+    private bool _showPopover;
+    private int _number = 5;
+
+    private void AddNumber()
+    {
+        _marbles.Add(new MarbleNumberModel(_number));
+        _number = 0;
+        _showPopover = false;
+    }
+
+}

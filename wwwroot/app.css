@@ -7,10 +7,22 @@
     font-family: monospace !important;
 }
 
+.centered-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .array {
     font-weight: bolder;
     font-size: 1.5rem;
     margin-right: 1rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .array::before {

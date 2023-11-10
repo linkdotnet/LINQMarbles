@@ -1,0 +1,24 @@
+﻿@page "/max-by"
+
+<PageContainer OperatorText="MaxBy(o => o.Letter)">
+    <InputPanel>
+        @foreach (var marble in _marbles)
+        {
+            <Marble Color="marble.Color">@marble.Number,@marble.Content</Marble>
+        }
+    </InputPanel>
+    <OutputPanel>
+        @{ var marble = _marbles.MaxBy(m => m.Content); }
+        <Marble Color="marble.Color">@marble.Number,@marble.Content</Marble>
+    </OutputPanel>
+</PageContainer>
+
+@code {
+    private readonly List<MarbleMultiModel> _marbles = new()
+    {
+        new(1, "C"),
+        new(2, "D"), 
+        new(3, "A"), 
+        new(4, "B")
+    };
+}
