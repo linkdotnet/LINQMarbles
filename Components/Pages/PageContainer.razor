@@ -8,7 +8,14 @@
             </MudItem>
             <MudItem xs="12">
                 <MudPaper Elevation="3" Class="section-card">
-                    <MudText Typo="Typo.h3" Class="function">@OperatorText</MudText>
+                    @if (OperatorText is not null)
+                    {
+                        <MudText Typo="Typo.h3" Class="function">@OperatorText</MudText>
+                    }
+                    else if (OperatorPanel is not null)
+                    {
+                        @OperatorPanel
+                    }
                 </MudPaper>
             </MudItem>
             <MudItem xs="12">
@@ -32,8 +39,11 @@
     </MudCardContent>
 </MudCard>
 @code {
-    [Parameter, EditorRequired]
-    public required string OperatorText { get; set; }
+    [Parameter]
+    public string? OperatorText { get; set; }
+    
+    [Parameter]
+    public RenderFragment? OperatorPanel { get; set; }
 
     [Parameter, EditorRequired]
     public required RenderFragment InputPanel { get; set; }

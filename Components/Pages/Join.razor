@@ -1,6 +1,17 @@
 ﻿@page "/join"
 
-<PageContainer OperatorText="Join(marbles2, item1 => item1.Letters, item2 => item2.Letters , (item1, item2) => new { item1, Count = item1.Number + item2.Number })">
+<PageContainer>
+    <OperatorPanel>
+<MudText Typo="Typo.h6" Style="text-align: left" Class="function">
+    Join(
+    <br />&nbsp;&nbsp;marbles2, 
+    <br />&nbsp;&nbsp;item1 => item1.Number, 
+    <br />&nbsp;&nbsp;item2 => item2.Number,
+    <br />&nbsp;&nbsp;(item1, item2) => new { item1.Number, Letter = item1.Letter + item2.Letter }
+    <br />)
+</MudText>
+
+    </OperatorPanel>
     <InputPanel>
         <div class="array">
             @foreach (var marble in _marbles1)
@@ -43,11 +54,11 @@
         <div class="centered-content">
             @foreach (var joined in _marbles1.Join(
                 _marbles2,
-                item1 => item1.Content,
-                item2 => item2.Content,
-                (item1, item2) => new { item1.Content, item1.Color, Sum = item1.Number + item2.Number}))
+                item1 => item1.Number,
+                item2 => item2.Number,
+                (item1, item2) => new { item1.Number, item1.Color, Content = item1.Content + item2.Content }))
             {
-                <Marble Color="joined.Color">@joined.Sum,@joined.Content</Marble>
+                <Marble Color="joined.Color">@joined.Number,@joined.Content</Marble>
             }
         </div>
     </OutputPanel>
@@ -64,16 +75,16 @@
     
     private readonly List<MarbleMultiModel> _marbles2 = new()
     {
-        new(5, "C"),
-        new(6, "D"), 
-        new(7, "B"), 
-        new(8, "A")
+        new(1, "C"),
+        new(2, "D"), 
+        new(3, "B"), 
+        new(4, "A")
     };
     
     private bool _showPopover1;
     private bool _showPopover2;
-    private string _content1 = "1,A";
-    private string _content2 = "1,A";
+    private string _content1 = "5,A";
+    private string _content2 = "5,Z";
 
     private void AddNewContentToList1()
     {
