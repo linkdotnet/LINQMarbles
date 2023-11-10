@@ -1,5 +1,5 @@
-@page "/single"
-<PageContainer OperatorText="Single(n => n > 3)">
+@page "/single-or-default"
+<PageContainer OperatorText="SingleOrDefault(n => n > 4)">
     <InputPanel>
          @foreach (var marble in _marbles)
          {
@@ -18,8 +18,15 @@
          </Marble>
     </InputPanel>
     <OutputPanel>
-        @{ var marble = _marbles.Single(n => n.Number > 3); }
-        <Marble Color="marble.Color">@marble.Number</Marble>
+        @{ var marble = _marbles.SingleOrDefault(n => n.Number > 4); }
+        @if (marble is not null)
+        {
+            <Marble Color="marble.Color">@marble.Number</Marble>
+        }
+        else
+        {
+            <Marble Color="Color.Info"><MudIcon Icon="@Icons.Material.Filled.DoNotDisturb"></MudIcon></Marble>
+        }
     </OutputPanel>
     <ErrorPanel>
         <div >
