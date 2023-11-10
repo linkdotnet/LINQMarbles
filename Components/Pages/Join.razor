@@ -1,0 +1,105 @@
+﻿@page "/join"
+
+<PageContainer OperatorText="Join(marbles2, item1 => item1.Letters, item2 => item2.Letters , (item1, item2) => new { item1, Count = item1.Number + item2.Number })">
+    <InputPanel>
+        <div class="array">
+            @foreach (var marble in _marbles1)
+            {
+                <Marble Color="marble.Color">@marble.Number,@marble.Content</Marble>
+            }
+            <Marble Color="@Color.Primary" Clicked="@(() => _showPopover1 = true)">
+                <span>+</span>
+                <MudPopover Open="@_showPopover1" AnchorOrigin="Origin.BottomRight">
+                    <div class="d-flex flex-column">
+                        <MudInput T="string" @bind-Value="@_content1"
+                                  AdornmentIcon="@Icons.Material.Filled.Add"
+                                  Adornment="Adornment.Start"
+                                  Required="true"
+                                  OnAdornmentClick="AddNewContentToList1"/>
+                    </div>
+                </MudPopover>
+            </Marble>
+        </div>
+        <div class="array">
+            @foreach (var marble in _marbles2)
+            {
+                <Marble Color="marble.Color">@marble.Number,@marble.Content</Marble>
+            }
+            <Marble Color="@Color.Primary" Clicked="@(() => _showPopover2 = true)">
+                <span>+</span>
+                <MudPopover Open="@_showPopover2" AnchorOrigin="Origin.BottomRight">
+                    <div class="d-flex flex-column">
+                        <MudInput T="string" @bind-Value="@_content2"
+                                  AdornmentIcon="@Icons.Material.Filled.Add"
+                                  Adornment="Adornment.Start"
+                                  Required="true"
+                                  OnAdornmentClick="AddNewContentToList2"/>
+                    </div>
+                </MudPopover>
+            </Marble>
+        </div>
+    </InputPanel>
+    <OutputPanel>
+        <div class="centered-content">
+            @foreach (var joined in _marbles1.Join(
+                _marbles2,
+                item1 => item1.Content,
+                item2 => item2.Content,
+                (item1, item2) => new { item1.Content, item1.Color, Sum = item1.Number + item2.Number}))
+            {
+                <Marble Color="joined.Color">@joined.Sum,@joined.Content</Marble>
+            }
+        </div>
+    </OutputPanel>
+</PageContainer>
+
+@code {
+    private readonly List<MarbleMultiModel> _marbles1 = new()
+    {
+        new(1, "A"),
+        new(2, "D"), 
+        new(3, "C"), 
+        new(4, "B")
+    };
+    
+    private readonly List<MarbleMultiModel> _marbles2 = new()
+    {
+        new(5, "C"),
+        new(6, "D"), 
+        new(7, "B"), 
+        new(8, "A")
+    };
+    
+    private bool _showPopover1;
+    private bool _showPopover2;
+    private string _content1 = "1,A";
+    private string _content2 = "1,A";
+
+    private void AddNewContentToList1()
+    {
+        var split = _content1.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+        if (split.Length != 2)
+        {
+            return;
+        }
+        
+        var number = int.Parse(split[0]);
+        var content = split[1];
+        
+        _marbles1.Add(new MarbleMultiModel(number, content));
+    }
+    
+    private void AddNewContentToList2()
+    {
+        var split = _content2.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+        if (split.Length != 2)
+        {
+            return;
+        }
+        
+        var number = int.Parse(split[0]);
+        var content = split[1];
+        
+        _marbles2.Add(new MarbleMultiModel(number, content));
+    }
+}
