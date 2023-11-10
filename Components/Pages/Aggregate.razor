@@ -1,6 +1,12 @@
 ﻿@page "/aggregate"
 
-<PageContainer OperatorText="Aggregate(1, (total, next) => total * next)">
+<PageContainer>
+    <OperatorPanel>
+        <MudText Typo="Typo.h6" Class="function">
+            Aggregate(
+            <br/>&nbsp;&nbsp;1, (total, next) => total * next)
+        </MudText>
+    </OperatorPanel>
     <InputPanel>
         @foreach (var marble in _marbles)
         {
@@ -10,16 +16,16 @@
             <span>+</span>
             <MudPopover Open="@_showPopover" AnchorOrigin="Origin.BottomRight">
                 <div class="d-flex flex-column">
-                    <MudInput T="int" @bind-Value="@_number" 
+                    <MudInput T="int" @bind-Value="@_number"
                               AdornmentIcon="@Icons.Material.Filled.Add"
-                              Adornment="Adornment.Start" 
+                              Adornment="Adornment.Start"
                               OnAdornmentClick="AddNumber"/>
                 </div>
             </MudPopover>
         </Marble>
     </InputPanel>
     <OutputPanel>
-            <MudText Typo="Typo.h4">@_marbles.Aggregate(1, (total, next) => total * next.Number)</MudText>
+        <MudText Typo="Typo.h4">@_marbles.Aggregate(1, (total, next) => total * next.Number)</MudText>
     </OutputPanel>
 </PageContainer>
 
