@@ -32,7 +32,7 @@
 </PageContainer>
 
 @code {
-    private readonly List<MarbleModel> _marbles = new()
+    private readonly List<MarbleNumberModel> _marbles = new()
     {
         new(1),
         new(3), 
@@ -45,7 +45,7 @@
 
     private void AddNumber()
     {
-        _marbles.Add(new MarbleModel(_number));
+        _marbles.Add(new MarbleNumberModel(_number));
         _number = 0;
         _showPopover = false;
     }

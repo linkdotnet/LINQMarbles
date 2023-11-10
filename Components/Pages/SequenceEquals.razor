@@ -43,13 +43,13 @@
 </PageContainer>
 
 @code {
-    private readonly List<MarbleModel> _marbles1 = new()
+    private readonly List<MarbleNumberModel> _marbles1 = new()
     {
         new(1) { Color = Color.Secondary },
         new(3) { Color = Color.Secondary },
     };
     
-    private readonly List<MarbleModel> _marbles2 = new()
+    private readonly List<MarbleNumberModel> _marbles2 = new()
     {
         new(1) { Color = Color.Secondary },
     };
@@ -60,14 +60,14 @@
 
     private void AddNumberToFirstList()
     {
-        _marbles1.Add(new MarbleModel(_number) { Color = Color.Secondary });
+        _marbles1.Add(new MarbleNumberModel(_number) { Color = Color.Secondary });
         _number = 0;
         _showPopover1 = false;
     }
     
     private void AddNumberToSecondList()
     {
-        _marbles2.Add(new MarbleModel(_number) { Color = Color.Secondary });
+        _marbles2.Add(new MarbleNumberModel(_number) { Color = Color.Secondary });
         _number = 0;
         _showPopover2 = false;
     }

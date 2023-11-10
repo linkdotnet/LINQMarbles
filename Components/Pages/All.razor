@@ -1,6 +1,6 @@
-﻿@page "/select"
+﻿@page "/all"
 
-<PageContainer OperatorText="Select(n => n * 2)">
+<PageContainer OperatorText="All(n => n < 5)">
     <InputPanel>
         @foreach (var marble in _marbles)
         {
@@ -19,12 +19,10 @@
         </Marble>
     </InputPanel>
     <OutputPanel>
-        @foreach (var marble in _marbles)
-        {
-            <Marble Color="marble.Color">@(marble.Number * 2)</Marble>
-        }
+        <MudText Typo="Typo.h4">@_marbles.All(n => n.Number < 5)</MudText>
     </OutputPanel>
 </PageContainer>
+
 @code {
     private readonly List<MarbleNumberModel> _marbles = new()
     {
@@ -36,7 +34,7 @@
 
     private bool _showPopover;
     private int _number = 5;
-    
+
     private void AddNumber()
     {
         _marbles.Add(new MarbleNumberModel(_number));

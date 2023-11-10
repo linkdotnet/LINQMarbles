@@ -2,7 +2,7 @@ using MudBlazor;
 
 namespace LinqMarbles;
 
-public record MarbleModel(int Number)
+public record MarbleNumberModel(int Number)
 {
     public Color Color { get; init; } = GetRandomColor();
 
@@ -13,7 +13,7 @@ public record MarbleModel(int Number)
         return colors[randomIndex];
     }
 
-    public virtual bool Equals(MarbleModel? other)
+    public virtual bool Equals(MarbleNumberModel? other)
     {
         return Number == other?.Number;
     }
