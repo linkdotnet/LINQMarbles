@@ -16,14 +16,20 @@
         <div class="array">
             @foreach (var marble in _marbles1)
             {
-                <Marble Color="marble.Color">@marble.Number,@marble.Content</Marble>
+                <Marble Color="marble.Color"
+                        Close="@(() => _marbles1.Remove(marble))">
+                    @marble.Number,@marble.Content
+                </Marble>
             }
             <AddMarble DefaultContent='"5,A"' OnAdd="AddNewContentToList1" T="string" />
         </div>
         <div class="array">
             @foreach (var marble in _marbles2)
             {
-                <Marble Color="marble.Color">@marble.Number,@marble.Content</Marble>
+                <Marble Color="marble.Color"
+                        Close="@(() => _marbles2.Remove(marble))">
+                    @marble.Number,@marble.Content
+                </Marble>
             }
             <AddMarble DefaultContent='"5,Z"' OnAdd="AddNewContentToList2" T="string" />
         </div>

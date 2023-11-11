@@ -4,14 +4,20 @@
     <InputPanel>
         @foreach (var marble in _marbles)
         {
-            <Marble Color="marble.Color">@marble.Number,@marble.Content</Marble>
+            <Marble Color="marble.Color"
+                    Close="@(() => _marbles.Remove(marble))">
+                @marble.Number,@marble.Content
+            </Marble>
         }
         <AddMarble DefaultContent='"1,A"' OnAdd="AddNewContentToList" T="string" />
     </InputPanel>
     <OutputPanel>
-        @{ var marble = _marbles.MaxBy(m => m.Content); }
+        @{ var marble = _marbles.MaxBy(m => m.Content)!; }
         <Marble Color="marble.Color">@marble.Number,@marble.Content</Marble>
     </OutputPanel>
+    <ErrorPanel>
+        <p>@context.Message</p>
+    </ErrorPanel>
 </PageContainer>
 
 @code {

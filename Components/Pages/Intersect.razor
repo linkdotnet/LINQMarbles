@@ -5,14 +5,20 @@
         <div class="array">
             @foreach (var marble in _marbles1)
             {
-                <Marble Color="marble.Color">@marble.Number</Marble>
+                <Marble Color="marble.Color"
+                        Close="@(() => _marbles1.Remove(marble))">
+                    @marble.Number
+                </Marble>
             }
             <AddMarble DefaultContent="5" OnAdd="AddNumberToFirstList" T="int" />
         </div>
         <div class="array">
             @foreach (var marble in _marbles2)
             {
-                <Marble Color="marble.Color">@marble.Number</Marble>
+                <Marble Color="marble.Color"
+                        Close="@(() => _marbles2.Remove(marble))">
+                    @marble.Number
+                </Marble>
             }
             <AddMarble DefaultContent="5" OnAdd="AddNumberToSecondList" T="int" />
         </div>

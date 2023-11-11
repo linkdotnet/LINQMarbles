@@ -5,7 +5,8 @@
     <InputPanel>
         @foreach (var marble in _marbles)
         {
-            <Marble Color="marble.Color">@marble.Number</Marble>
+            <Marble Color="marble.Color"
+                    Close="@(() => _marbles.Remove(marble))">@marble.Number</Marble>
         }
         <AddMarble DefaultContent="5" OnAdd="AddNumber" T="int" />
     </InputPanel>
@@ -29,5 +30,10 @@
     private void AddNumber(int number)
     {
         _marbles.Add(new MarbleNumberModel(number));
+    }
+
+    private void DeleteMarble(int number)
+    {
+        _marbles.Remove(_marbles.First(m => m.Number == number));
     }
 }

@@ -3,7 +3,9 @@
         <MudGrid>
             <MudItem xs="12">
                 <MudStack Row="true" Justify="Justify.Center">
-                    @InputPanel
+                    <CascadingValue Name="Deletable" Value="true" IsFixed="true">
+                        @InputPanel
+                    </CascadingValue>
                 </MudStack>
             </MudItem>
             <MudItem xs="12">

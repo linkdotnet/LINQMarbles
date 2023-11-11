@@ -10,7 +10,10 @@
     <InputPanel>
         @foreach (var marble in _marbles)
         {
-            <Marble Color="marble.Color">@marble.Number</Marble>
+            <Marble Color="marble.Color"
+                    Close="@(() => _marbles.Remove(marble))">
+                @marble.Number
+            </Marble>
         }
         <AddMarble DefaultContent="5" OnAdd="AddNumber" T="int" />
     </InputPanel>

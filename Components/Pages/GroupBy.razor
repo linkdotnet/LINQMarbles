@@ -4,7 +4,10 @@
     <InputPanel>
         @foreach (var marble in _marbles)
         {
-            <Marble Color="marble.Color">@marble.Number,@marble.Content</Marble>
+            <Marble Color="marble.Color"
+                    Close="@(() => _marbles.Remove(marble))">
+                @marble.Number,@marble.Content
+            </Marble>
         }
         <AddMarble OnAdd="AddNewContent" T="string" />
     </InputPanel>

@@ -1,11 +1,23 @@
-<MudChip Color="@Color" Class="marble-chip" OnClick="Clicked" Size="Size.Large">
+<MudChip Color="@Color" OnClick="Clicked" Size="Size.Large" CloseIcon="@CloseIcon" OnClose="Close">
     @ChildContent
 </MudChip>
 
 @code {
-    [Parameter, EditorRequired] public required Color Color { get; set; }
-    [Parameter, EditorRequired] public required RenderFragment ChildContent { get; set; }
+    private string? CloseIcon => Deletable ? Icons.Material.Filled.Close : null;
+    
+    [Parameter, EditorRequired] 
+    public required Color Color { get; set; }
+    
+    [Parameter, EditorRequired] 
+    public required RenderFragment ChildContent { get; set; }
+
+    [CascadingParameter]
+    public bool Deletable { get; set; }
 
     [Parameter]
     public EventCallback Clicked { get; set; }
+
+    [Parameter]
+    public EventCallback Close { get; set; }
+
 }

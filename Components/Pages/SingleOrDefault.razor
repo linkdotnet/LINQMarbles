@@ -3,7 +3,10 @@
     <InputPanel>
          @foreach (var marble in _marbles)
          {
-             <Marble Color="marble.Color">@marble.Number</Marble>
+             <Marble Color="marble.Color"
+                     Close="@(() => _marbles.Remove(marble))">
+                 @marble.Number
+             </Marble>
          }
          <AddMarble DefaultContent="5" OnAdd="AddNumber" T="int"></AddMarble>
     </InputPanel>
@@ -15,7 +18,7 @@
         }
         else
         {
-            <Marble Color="Color.Info"><MudIcon Icon="@Icons.Material.Filled.DoNotDisturb"></MudIcon></Marble>
+            <Marble Color="Color.Info">null</Marble>
         }
     </OutputPanel>
     <ErrorPanel>
