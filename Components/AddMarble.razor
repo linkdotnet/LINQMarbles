@@ -1,6 +1,6 @@
 @typeparam T
 
-<Marble Color="@Color.Primary" Clicked="@(() => _showPopover = true)">
+<Marble Color="@Color.Primary" Clicked="OpenPopup">
     <span>+</span>
     <MudPopover Open="@_showPopover" AnchorOrigin="Origin.BottomRight">
         <div class="d-flex flex-column">
@@ -9,20 +9,34 @@
                       Adornment="Adornment.Start"
                       OnKeyDown="CallOnAddWhenEnter"
                       Required="true"
-                      OnAdornmentClick="AddNewContent"/>
+                      OnAdornmentClick="AddNewContent"
+                      @ref="_input"/>
         </div>
     </MudPopover>
 </Marble>
 
 @code {
-    
     [Parameter]
     public EventCallback<T> OnAdd { get; set; }
     
     [Parameter]
     public T? DefaultContent { get; set; }
     
+    private MudInput<T>? _input;
     private bool _showPopover;
+    
+    private async Task OpenPopup()
+    {
+        _showPopover = true;
+        
+        // Wait 1 ms to make sure the popover is rendered
+        // and _input is not null
+        await Task.Delay(1);
+        if (_input is not null)
+        {
+            await _input.FocusAsync();
+        }
+    }
 
     private async Task AddNewContent()
     {
