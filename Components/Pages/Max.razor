@@ -12,7 +12,11 @@
         <AddMarble DefaultContent="5" OnAdd="AddNumber" T="int" />
     </InputPanel>
     <OutputPanel>
-        <MudText Typo="Typo.h4">@_marbles.MaxBy(s => s.Number)!.Number</MudText>
+        @{ var marble = _marbles.MaxBy(s => s.Number); }
+        @if (marble is not null)
+        {
+            <MudText Typo="Typo.h4">@marble.Number</MudText>
+        }
     </OutputPanel>
 </PageContainer>
 

@@ -12,8 +12,11 @@
         <AddMarble DefaultContent='"1,A"' OnAdd="AddNewContentToList" T="string" />
     </InputPanel>
     <OutputPanel>
-        @{ var marble = _marbles.MaxBy(m => m.Content)!; }
-        <Marble Color="marble.Color">@marble.Number,@marble.Content</Marble>
+        @{ var marble = _marbles.MaxBy(m => m.Content); }
+        @if (marble is not null)
+        {
+            <Marble Color="marble.Color">@marble.Number,@marble.Content</Marble>
+        }
     </OutputPanel>
     <ErrorPanel>
         <p>@context.Message</p>
