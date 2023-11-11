@@ -22,7 +22,7 @@
             </MudItem>
             <MudItem xs="12">
                 <MudStack Row="true" Justify="Justify.Center">
-                    <ErrorBoundary>
+                    <ErrorBoundary @ref="_errorBoundary">
                         <ChildContent>
                             @OutputPanel
                         </ChildContent>
@@ -55,4 +55,13 @@
     
     [Parameter]
     public RenderFragment<Exception>? ErrorPanel { get; set; }
+    
+    private ErrorBoundary? _errorBoundary;
+
+    protected override void OnParametersSet()
+    {
+        _errorBoundary?.Recover();
+        base.OnParametersSet();
+    }
+
 }
