@@ -6,18 +6,7 @@
         {
             <Marble Color="marble.Color">@marble.Number,@marble.Content</Marble>
         }
-        <Marble Color="@Color.Primary" Clicked="@(() => _showPopover = true)">
-            <span>+</span>
-            <MudPopover Open="@_showPopover" AnchorOrigin="Origin.BottomRight">
-                <div class="d-flex flex-column">
-                    <MudInput T="string" @bind-Value="@_content"
-                              AdornmentIcon="@Icons.Material.Filled.Add"
-                              Adornment="Adornment.Start"
-                              Required="true"
-                              OnAdornmentClick="AddNewContentToList"/>
-                </div>
-            </MudPopover>
-        </Marble>
+        <AddMarble DefaultContent='"5,A"' OnAdd="AddNewContentToList" T="string" />
     </InputPanel>
     <OutputPanel>
         @{ var marble = _marbles.MinBy(m => m.Content); }
@@ -34,12 +23,9 @@
         new(4, "B")
     };
     
-    private bool _showPopover;
-    private string _content = "5,A";
-    
-    private void AddNewContentToList()
+    private void AddNewContentToList(string input)
     {
-        var split = _content.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+        var split = input.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
         if (split.Length != 2)
         {
             return;
@@ -49,6 +35,5 @@
         var content = split[1];
         
         _marbles.Add(new MarbleMultiModel(number, content));
-        _showPopover = false;
     }
 }

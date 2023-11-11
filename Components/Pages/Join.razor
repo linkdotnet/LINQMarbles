@@ -18,36 +18,14 @@
             {
                 <Marble Color="marble.Color">@marble.Number,@marble.Content</Marble>
             }
-            <Marble Color="@Color.Primary" Clicked="@(() => _showPopover1 = true)">
-                <span>+</span>
-                <MudPopover Open="@_showPopover1" AnchorOrigin="Origin.BottomRight">
-                    <div class="d-flex flex-column">
-                        <MudInput T="string" @bind-Value="@_content1"
-                                  AdornmentIcon="@Icons.Material.Filled.Add"
-                                  Adornment="Adornment.Start"
-                                  Required="true"
-                                  OnAdornmentClick="AddNewContentToList1"/>
-                    </div>
-                </MudPopover>
-            </Marble>
+            <AddMarble DefaultContent='"5,A"' OnAdd="AddNewContentToList1" T="string" />
         </div>
         <div class="array">
             @foreach (var marble in _marbles2)
             {
                 <Marble Color="marble.Color">@marble.Number,@marble.Content</Marble>
             }
-            <Marble Color="@Color.Primary" Clicked="@(() => _showPopover2 = true)">
-                <span>+</span>
-                <MudPopover Open="@_showPopover2" AnchorOrigin="Origin.BottomRight">
-                    <div class="d-flex flex-column">
-                        <MudInput T="string" @bind-Value="@_content2"
-                                  AdornmentIcon="@Icons.Material.Filled.Add"
-                                  Adornment="Adornment.Start"
-                                  Required="true"
-                                  OnAdornmentClick="AddNewContentToList2"/>
-                    </div>
-                </MudPopover>
-            </Marble>
+            <AddMarble DefaultContent='"5,Z"' OnAdd="AddNewContentToList2" T="string" />
         </div>
     </InputPanel>
     <OutputPanel>
@@ -78,15 +56,10 @@
         new(3, "B"), 
         new(4, "A")
     };
-    
-    private bool _showPopover1;
-    private bool _showPopover2;
-    private string _content1 = "5,A";
-    private string _content2 = "5,Z";
 
-    private void AddNewContentToList1()
+    private void AddNewContentToList1(string input)
     {
-        var split = _content1.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+        var split = input.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
         if (split.Length != 2)
         {
             return;
@@ -96,12 +69,11 @@
         var content = split[1];
         
         _marbles1.Add(new MarbleMultiModel(number, content));
-        _showPopover1 = false;
     }
     
-    private void AddNewContentToList2()
+    private void AddNewContentToList2(string input)
     {
-        var split = _content2.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+        var split = input.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
         if (split.Length != 2)
         {
             return;
@@ -111,6 +83,5 @@
         var content = split[1];
         
         _marbles2.Add(new MarbleMultiModel(number, content));
-        _showPopover2 = false;
     }
 }

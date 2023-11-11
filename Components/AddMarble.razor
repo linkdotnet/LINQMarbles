@@ -1,0 +1,32 @@
+@typeparam T
+
+<Marble Color="@Color.Primary" Clicked="@(() => _showPopover = true)">
+    <span>+</span>
+    <MudPopover Open="@_showPopover" AnchorOrigin="Origin.BottomRight">
+        <div class="d-flex flex-column">
+            <MudInput T="T" @bind-Value="@DefaultContent" 
+                      AdornmentIcon="@Icons.Material.Filled.Add"
+                      Adornment="Adornment.Start"
+                      Required="true"
+                      OnAdornmentClick="AddNewContent"/>
+        </div>
+    </MudPopover>
+</Marble>
+
+@code {
+    
+    [Parameter]
+    public EventCallback<T> OnAdd { get; set; }
+    
+    [Parameter]
+    public T? DefaultContent { get; set; }
+    
+    private bool _showPopover;
+
+    private async Task AddNewContent()
+    {
+        await OnAdd.InvokeAsync(DefaultContent);
+        _showPopover = false;
+        DefaultContent = default;
+    }
+}
