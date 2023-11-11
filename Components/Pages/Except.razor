@@ -1,0 +1,55 @@
+﻿@page "/except"
+
+<PageContainer OperatorText="Except()">
+    <InputPanel>
+        <div class="array">
+            @foreach (var marble in _marbles1)
+            {
+                <Marble Color="marble.Color"
+                        Close="@(() => _marbles1.Remove(marble))">
+                    @marble.Number
+                </Marble>
+            }
+            <AddMarble DefaultContent="5" OnAdd="AddNumberToFirstList" T="int" />
+        </div>
+        <div class="array">
+            @foreach (var marble in _marbles2)
+            {
+                <Marble Color="marble.Color"
+                        Close="@(() => _marbles2.Remove(marble))">
+                    @marble.Number
+                </Marble>
+            }
+            <AddMarble DefaultContent="5" OnAdd="AddNumberToSecondList" T="int" />
+        </div>
+    </InputPanel>
+    <OutputPanel>
+        @foreach (var marble in _marbles1.Except(_marbles2))
+        {
+            <Marble Color="marble.Color">@marble.Number</Marble>
+        }
+    </OutputPanel>
+</PageContainer>
+
+@code {
+    private readonly List<MarbleNumberModel> _marbles1 = new()
+    {
+        new(1) { Color = Color.Secondary },
+        new(3) { Color = Color.Secondary },
+    };
+    
+    private readonly List<MarbleNumberModel> _marbles2 = new()
+    {
+        new(1) { Color = Color.Secondary },
+    };
+
+    private void AddNumberToFirstList(int number)
+    {
+        _marbles1.Add(new MarbleNumberModel(number) { Color = Color.Secondary });
+    }
+    
+    private void AddNumberToSecondList(int number)
+    {
+        _marbles2.Add(new MarbleNumberModel(number) { Color = Color.Secondary });
+    }
+}

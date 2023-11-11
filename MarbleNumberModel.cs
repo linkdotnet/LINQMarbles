@@ -13,8 +13,5 @@ public record MarbleNumberModel(int Number)
         return colors[randomIndex];
     }
 
-    public virtual bool Equals(MarbleNumberModel? other)
-    {
-        return Number == other?.Number;
-    }
+    public virtual bool Equals(MarbleNumberModel? other) => Number == other?.Number;
 }

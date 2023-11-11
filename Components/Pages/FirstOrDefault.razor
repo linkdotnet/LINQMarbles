@@ -1,0 +1,39 @@
+@page "/first-or-default"
+<PageContainer OperatorText="FirstOrDefault(n => n > 4)">
+    <InputPanel>
+         @foreach (var marble in _marbles)
+         {
+             <Marble Color="marble.Color"
+                     Close="@(() => _marbles.Remove(marble))">
+                 @marble.Number
+             </Marble>
+         }
+         <AddMarble DefaultContent="5" OnAdd="AddNumber" T="int"></AddMarble>
+    </InputPanel>
+    <OutputPanel>
+        @{ var marble = _marbles.FirstOrDefault(n => n.Number > 4); }
+        @if (marble is not null)
+        {
+            <Marble Color="marble.Color">@marble.Number</Marble>
+        }
+        else
+        {
+            <Marble Color="Color.Info">null</Marble>
+        }
+    </OutputPanel>
+</PageContainer>
+
+@code {
+    private readonly List<MarbleNumberModel> _marbles = new()
+    {
+        new(1),
+        new(2), 
+        new(3), 
+        new(4)
+    };
+    
+    private void AddNumber(int number)
+    {
+        _marbles.Add(new MarbleNumberModel(number));
+    }
+}
