@@ -7,9 +7,12 @@
             <MudInput T="T" @bind-Value="@DefaultContent" 
                       AdornmentIcon="@Icons.Material.Filled.Add"
                       Adornment="Adornment.Start"
+                      AdornmentAriaLabel="Add content"
                       OnKeyUp="CallOnAddWhenEnter"
                       Required="true"
                       OnAdornmentClick="AddNewContent"
+                      Variant="Variant.Outlined"
+                      Style="width: 7rem"
                       @ref="_input"/>
         </div>
     </MudPopover>
