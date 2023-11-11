@@ -7,6 +7,7 @@
             <MudInput T="T" @bind-Value="@DefaultContent" 
                       AdornmentIcon="@Icons.Material.Filled.Add"
                       Adornment="Adornment.Start"
+                      OnKeyDown="CallOnAddWhenEnter"
                       Required="true"
                       OnAdornmentClick="AddNewContent"/>
         </div>
@@ -28,5 +29,13 @@
         await OnAdd.InvokeAsync(DefaultContent);
         _showPopover = false;
         DefaultContent = default;
+    }
+
+    private async Task CallOnAddWhenEnter(KeyboardEventArgs args)
+    {
+        if (args.Key == "Enter")
+        {
+            await AddNewContent();
+        }
     }
 }
