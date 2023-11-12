@@ -4,12 +4,14 @@
             <MudItem xs="12">
                 <MudStack Row="true" Justify="Justify.Center">
                     <CascadingValue Name="Deletable" Value="true" IsFixed="true">
-                        @InputPanel
+                        <MudGrid Justify="Justify.Center">
+                            @InputPanel
+                        </MudGrid>
                     </CascadingValue>
                 </MudStack>
             </MudItem>
             <MudItem xs="12">
-                <MudPaper Elevation="3" Class="section-card">
+                <MudPaper Elevation="3">
                     @if (OperatorText is not null)
                     {
                         <MudText Typo="Typo.h3" Class="function">@OperatorText</MudText>
@@ -24,7 +26,9 @@
                 <MudStack Row="true" Justify="Justify.Center">
                     <ErrorBoundary @ref="_errorBoundary">
                         <ChildContent>
-                            @OutputPanel
+                            <MudGrid Justify="Justify.Center">
+                                @OutputPanel
+                            </MudGrid>
                         </ChildContent>
                         <ErrorContent>
                             @if (ErrorPanel is not null)
