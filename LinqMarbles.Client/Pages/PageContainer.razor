@@ -31,12 +31,16 @@
                             </MudGrid>
                         </ChildContent>
                         <ErrorContent>
-                            @if (ErrorPanel is not null)
-                            {
-                                <div style="display: block">
-                                    @ErrorPanel(@context)
+                            <div style="display: block">
+                                <div>
+                                    <Marble Color="Color.Error"><MudIcon Icon="@Icons.Material.Filled.ElectricBolt"></MudIcon></Marble>
                                 </div>
-                            }
+                                <MudStack>
+                                    <MudDivider/>
+                                    <MudText Typo="Typo.h6" Inline="true">Exception:</MudText>
+                                    <MudText Typo="Typo.subtitle1" Style="text-align: left">@context.Message</MudText>
+                                </MudStack>
+                            </div>
                         </ErrorContent>
                     </ErrorBoundary>
                 </MudStack>
@@ -56,9 +60,6 @@
     
     [Parameter, EditorRequired]
     public required RenderFragment OutputPanel { get; set; }
-    
-    [Parameter]
-    public RenderFragment<Exception>? ErrorPanel { get; set; }
     
     private ErrorBoundary? _errorBoundary;
 
