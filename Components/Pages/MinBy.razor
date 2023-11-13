@@ -13,7 +13,14 @@
     </InputPanel>
     <OutputPanel>
         @{ var marble = _marbles.MinBy(m => m.Content); }
-        <Marble Color="marble.Color">@marble.Number,@marble.Content</Marble>
+        @if (marble is not null)
+        {
+            <Marble Color="marble.Color">@marble.Number,@marble.Content</Marble>
+        }
+        else 
+        {
+            <Marble Color="Color.Info">null</Marble>
+        }
     </OutputPanel>
 </PageContainer>
 
