@@ -14,12 +14,4 @@
     <PackageReference Include="MudBlazor" Version="6.11.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <AdditionalFiles Include="Components\App.razor" />
-    <AdditionalFiles Include="Components\Layout\MainLayout.razor" />
-    <AdditionalFiles Include="Components\Layout\NavMenu.razor" />
-    <AdditionalFiles Include="Components\Routes.razor" />
-    <AdditionalFiles Include="Components\_Imports.razor" />
-  </ItemGroup>
-
 </Project>
