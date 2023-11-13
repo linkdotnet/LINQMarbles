@@ -12,8 +12,8 @@
                                 Close="@(() => marbleList.Remove(marble))">
                             @marble.Number
                         </Marble>
-                        <AddMarble DefaultContent="5" OnAdd="@(n => marbleList.Add(new(n)))" T="int"/>
                     }
+                    <AddMarble DefaultContent="5" OnAdd="@(n => marbleList.Add(new(n)))" T="int"/>
                 </div>
             }
             <AddMarble DefaultContent="5" OnAdd="@(n => _listOfMarbles.Add(new(){new(n)}))" T="int"/>
