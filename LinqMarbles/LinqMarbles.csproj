@@ -11,12 +11,4 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.0-rc.2.23480.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Components\App.razor" />
-    <_ContentIncludedByDefault Remove="Components\Layout\MainLayout.razor" />
-    <_ContentIncludedByDefault Remove="Components\Layout\NavMenu.razor" />
-    <_ContentIncludedByDefault Remove="Components\Routes.razor" />
-    <_ContentIncludedByDefault Remove="Components\_Imports.razor" />
-  </ItemGroup>
-
 </Project>
