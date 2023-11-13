@@ -1,0 +1,33 @@
+﻿@page "/select-many"
+
+<PageContainer OperatorText="SelectMany(n => n * 2)">
+    <InputPanel>
+            @foreach (var marbleList in _listOfMarbles)
+            {
+                <div class="array">
+                    @foreach (var marble in marbleList)
+                    {
+                        <Marble Color="marble.Color"
+                                Close="@(() => marbleList.Remove(marble))">
+                            @marble.Number
+                        </Marble>
+                        <AddMarble DefaultContent="5" OnAdd="@(n => marbleList.Add(new(n)))" T="int"/>
+                    }
+                </div>
+            }
+            <AddMarble DefaultContent="5" OnAdd="@(n => _listOfMarbles.Add(new(){new(n)}))" T="int"/>
+    </InputPanel>
+    <OutputPanel>
+        @foreach (var marble in _listOfMarbles.SelectMany(l => l))
+        {
+            <Marble Color="marble.Color">@(marble.Number * 2)</Marble>
+        }
+    </OutputPanel>
+</PageContainer>
+@code {
+    private readonly List<List<MarbleNumberModel>> _listOfMarbles = new()
+    {
+        new() { new(1) },
+        new() { new(2) },
+    };
+}
