@@ -1,0 +1,34 @@
+﻿@page "/distinct"
+
+<PageContainer OperatorText="Distinct()">
+    <InputPanel>
+        @foreach (var marble in _marbles)
+        {
+            <Marble Color="marble.Color"
+                    Close="@(() => _marbles.Remove(marble))">
+                @marble.Number
+            </Marble>
+        }
+        <AddMarble DefaultContent="5" OnAdd="AddNumber" T="int" />
+    </InputPanel>
+    <OutputPanel>
+        @foreach (var marble in _marbles.DistinctBy(m => m.Number))
+        {
+            <Marble Color="marble.Color">@marble.Number</Marble>
+        }
+    </OutputPanel>
+</PageContainer>
+@code {
+    private readonly List<MarbleNumberModel> _marbles = new()
+    {
+        new(1),
+        new(2), 
+        new(2), 
+        new(3)
+    };
+    
+    private void AddNumber(int number)
+    {
+        _marbles.Add(new MarbleNumberModel(number));
+    }
+}
