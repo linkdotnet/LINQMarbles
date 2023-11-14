@@ -1,37 +1,59 @@
 ﻿<MudNavGroup Title="Operators" Expanded="@true">
-    <MudNavLink Href="/where">Where</MudNavLink>
-    <MudNavLink Href="/select">Select</MudNavLink>
-    <MudNavLink Href="/select-many">SelectMany</MudNavLink>
-    <MudNavLink Href="/single">Single</MudNavLink>
-    <MudNavLink Href="/single-or-default">SingleOrDefault</MudNavLink>
-    <MudNavLink Href="/first">First</MudNavLink>
-    <MudNavLink Href="/first-or-default">FirstOrDefault</MudNavLink>
-    <MudNavLink Href="/last">Last</MudNavLink>
-    <MudNavLink Href="/last-or-default">LastOrDefault</MudNavLink>
-    <MudNavLink Href="/order">Order</MudNavLink>
-    <MudNavLink Href="/order-descending">OrderDescending</MudNavLink>
-    <MudNavLink Href="/chunk">Chunk</MudNavLink>
-    <MudNavLink Href="/sequence-equal">SequenceEqual</MudNavLink>
-    <MudNavLink Href="/any">Any</MudNavLink>
-    <MudNavLink Href="/all">All</MudNavLink>
-    <MudNavLink Href="/count">Count</MudNavLink>
-    <MudNavLink Href="/sum">Sum</MudNavLink>
-    <MudNavLink Href="/average">Average</MudNavLink>
-    <MudNavLink Href="/aggregate">Aggregate</MudNavLink>
-    <MudNavLink Href="/min">Min</MudNavLink>
-    <MudNavLink Href="/min-by">MinBy</MudNavLink>
-    <MudNavLink Href="/max">Max</MudNavLink>
-    <MudNavLink Href="/max-by">MaxBy</MudNavLink>
-    <MudNavLink Href="/group-by">GroupBy</MudNavLink>
-    <MudNavLink Href="/union">Union</MudNavLink>
-    <MudNavLink Href="/intersect">Intersect</MudNavLink>
-    <MudNavLink Href="/except">Except</MudNavLink>
-    <MudNavLink Href="/join">Join</MudNavLink>
-    <MudNavLink Href="/zip">Zip</MudNavLink>
-    <MudNavLink Href="/skip">Skip</MudNavLink>
-    <MudNavLink Href="/take">Take</MudNavLink>
-    <MudNavLink Href="/concat">Concat</MudNavLink>
-    <MudNavLink Href="/distinct">Distinct</MudNavLink>
+    <MudNavGroup Title="Aggregation" Expanded="@true">
+        <MudNavLink Href="/aggregate">Aggregate</MudNavLink>
+        <MudNavLink Href="/average">Average</MudNavLink>
+        <MudNavLink Href="/count">Count</MudNavLink>
+        <MudNavLink Href="/max">Max</MudNavLink>
+        <MudNavLink Href="/max-by">MaxBy</MudNavLink>
+        <MudNavLink Href="/min">Min</MudNavLink>
+        <MudNavLink Href="/min-by">MinBy</MudNavLink>
+        <MudNavLink Href="/sum">Sum</MudNavLink>
+    </MudNavGroup>
+    <MudNavGroup Title="Concatenation" Expanded="@true">
+        <MudNavLink Href="/concat">Concat</MudNavLink>
+    </MudNavGroup>
+    <MudNavGroup Title="Element" Expanded="@true">
+        <MudNavLink Href="/first">First</MudNavLink>
+        <MudNavLink Href="/first-or-default">FirstOrDefault</MudNavLink>
+        <MudNavLink Href="/last">Last</MudNavLink>
+        <MudNavLink Href="/last-or-default">LastOrDefault</MudNavLink>
+        <MudNavLink Href="/single">Single</MudNavLink>
+        <MudNavLink Href="/single-or-default">SingleOrDefault</MudNavLink>
+    </MudNavGroup>
+    <MudNavGroup Title="Filtering" Expanded="@true">
+        <MudNavLink Href="/distinct">Distinct</MudNavLink>
+        <MudNavLink Href="/skip">Skip</MudNavLink>
+        <MudNavLink Href="/take">Take</MudNavLink>
+        <MudNavLink Href="/where">Where</MudNavLink>
+    </MudNavGroup>
+    <MudNavGroup Title="Grouping" Expanded="@true">
+        <MudNavLink Href="/group-by">GroupBy</MudNavLink>
+    </MudNavGroup>
+    <MudNavGroup Title="Merging" Expanded="@true">
+        <MudNavLink Href="/join">Join</MudNavLink>
+        <MudNavLink Href="/zip">Zip</MudNavLink>
+    </MudNavGroup>
+    <MudNavGroup Title="Order" Expanded="@true">
+        <MudNavLink Href="/order">Order</MudNavLink>
+        <MudNavLink Href="/order-descending">OrderDescending</MudNavLink>
+    </MudNavGroup>
+    <MudNavGroup Title="Projection" Expanded="@true">
+        <MudNavLink Href="/select">Select</MudNavLink>
+        <MudNavLink Href="/select-many">SelectMany</MudNavLink>
+    </MudNavGroup>
+    <MudNavGroup Title="Quantification" Expanded="@true">
+        <MudNavLink Href="/all">All</MudNavLink>
+        <MudNavLink Href="/any">Any</MudNavLink>
+        <MudNavLink Href="/sequence-equal">SequenceEqual</MudNavLink>
+    </MudNavGroup>
+    <MudNavGroup Title="Sequence" Expanded="@true">
+        <MudNavLink Href="/chunk">Chunk</MudNavLink>
+    </MudNavGroup>
+    <MudNavGroup Title="Set" Expanded="@true">
+        <MudNavLink Href="/except">Except</MudNavLink>
+        <MudNavLink Href="/intersect">Intersect</MudNavLink>
+        <MudNavLink Href="/union">Union</MudNavLink>
+    </MudNavGroup>
 </MudNavGroup>
 <MudNavGroup Title="Info">
     <MudNavLink Href="https://github.com/linkdotnet/LINQMarbles" Target="_blank">Source code</MudNavLink>
