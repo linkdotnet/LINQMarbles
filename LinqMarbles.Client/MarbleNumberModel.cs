@@ -14,4 +14,6 @@ public record MarbleNumberModel(int Number)
     }
 
     public virtual bool Equals(MarbleNumberModel? other) => Number == other?.Number;
+    
+    public override int GetHashCode() => Number.GetHashCode();
 }
