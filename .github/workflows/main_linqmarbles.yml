@@ -22,7 +22,7 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Publish
-        run: dotnet publish -c Release LinqMarbles/LinqMarbles.csproj -o ./dist
+        run: dotnet publish -c Release LinqMarbles/LinqMarbles.csproj --self-contained true -r win-x86 -o ./dist
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
