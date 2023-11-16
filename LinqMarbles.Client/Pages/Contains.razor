@@ -1,0 +1,33 @@
+﻿@page "/contains"
+<PageTitle>LINQ Marbles - Contains</PageTitle>
+
+<PageContainer OperatorText="Contains(4)">
+    <InputPanel>
+        @foreach (var marble in _marbles)
+        {
+            <Marble Color="marble.Color"
+                    Close="@(() => _marbles.Remove(marble))">
+                @marble.Number
+            </Marble>
+        }
+        <AddMarble DefaultContent="5" OnAdd="AddNumber" T="int" />
+    </InputPanel>
+    <OutputPanel>
+        <MudText Typo="Typo.h4">@_marbles.Contains(new(4))</MudText>
+    </OutputPanel>
+</PageContainer>
+
+@code {
+    private readonly List<MarbleNumberModel> _marbles = new()
+    {
+        new(1),
+        new(2),
+        new(3),
+        new(4)
+    };
+
+    private void AddNumber(int number)
+    {
+        _marbles.Add(new MarbleNumberModel(number));
+    }
+}
