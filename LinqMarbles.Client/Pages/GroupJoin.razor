@@ -1,0 +1,100 @@
+@page "/group-join"
+<PageTitle>LINQ Marbles - GroupJoin</PageTitle>
+
+<PageContainer>
+    <OperatorPanel>
+        <MudText Typo="Typo.h6" Style="text-align: left" Class="function">
+            GroupJoin(
+            <br />&nbsp;&nbsp;marbles2, 
+            <br />&nbsp;&nbsp;item1 => item1.Number, 
+            <br />&nbsp;&nbsp;item2 => item2.Number,
+            <br />&nbsp;&nbsp;(item1, group) => new { item1.Number, Group = group }
+            <br />)
+        </MudText>
+    </OperatorPanel>
+    <InputPanel>
+        <div class="array">
+            @foreach (var marble in _marbles1)
+            {
+                <Marble Color="marble.Color"
+                        Close="@(() => _marbles1.Remove(marble))">
+                    @marble.Number,@marble.Content
+                </Marble>
+            }
+            <AddMarble DefaultContent='"5,A"' OnAdd="AddNewContentToList1" T="string" />
+        </div>
+        <div class="array">
+            @foreach (var marble in _marbles2)
+            {
+                <Marble Color="marble.Color"
+                        Close="@(() => _marbles2.Remove(marble))">
+                    @marble.Number,@marble.Content
+                </Marble>
+            }
+            <AddMarble DefaultContent='"5,Z"' OnAdd="AddNewContentToList2" T="string" />
+        </div>
+    </InputPanel>
+    <OutputPanel>
+        @foreach (var groupInfo in _marbles1.GroupJoin(
+            _marbles2,
+            item1 => item1.Number,
+            item2 => item2.Number,
+            (item1, group) => new { Number = item1.Number, Group = group.Select(m => m.Content) }))
+        {
+            <span class="array">
+                <MudText Inline="true" Typo="Typo.h5">@groupInfo.Number</MudText>
+                <MudIcon Icon="@Icons.Material.Filled.ArrowCircleRight"/>
+                @foreach (var content in groupInfo.Group)
+                {
+                    <Marble Color="Color.Secondary">@groupInfo.Number,@content</Marble>
+                }
+            </span>
+        }
+    </OutputPanel>
+</PageContainer>
+
+@code {
+    private readonly List<MarbleMultiModel> _marbles1 = new()
+    {
+        new(1, "A"),
+        new(2, "D"), 
+        new(3, "C"), 
+        new(4, "B")
+    };
+    
+    private readonly List<MarbleMultiModel> _marbles2 = new()
+    {
+        new(1, "C"),
+        new(2, "D"), 
+        new(3, "B"), 
+        new(4, "A")
+    };
+
+    private void AddNewContentToList1(string input)
+    {
+        var split = input.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+        if (split.Length != 2)
+        {
+            return;
+        }
+        
+        var number = int.Parse(split[0]);
+        var content = split[1];
+        
+        _marbles1.Add(new MarbleMultiModel(number, content));
+    }
+    
+    private void AddNewContentToList2(string input)
+    {
+        var split = input.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+        if (split.Length != 2)
+        {
+            return;
+        }
+        
+        var number = int.Parse(split[0]);
+        var content = split[1];
+        
+        _marbles2.Add(new MarbleMultiModel(number, content));
+    }
+}
