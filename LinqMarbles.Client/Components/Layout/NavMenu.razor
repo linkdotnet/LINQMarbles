@@ -5,7 +5,7 @@
                       Style="max-width: 90%"/>
     </MudNavLink>
 
-    @foreach (var group in NavGroups)
+    @foreach (var group in RouteConstant.NavGroups)
     {
         var filteredLinks = group.Value.Where(link => link.Contains(_searchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
         if (filteredLinks.Any())
@@ -25,42 +25,4 @@
 </MudNavGroup>
 @code {
     private string _searchTerm = string.Empty;
-
-    private static readonly FrozenDictionary<string, string[]> NavGroups = new Dictionary<string, string[]>
-    {
-        { "Aggregation", [
-            RouteConstant.Aggregate, 
-            RouteConstant.Average, 
-            RouteConstant.Count, 
-            RouteConstant.Max, 
-            RouteConstant.MaxBy, 
-            RouteConstant.Min, 
-            RouteConstant.MinBy,
-            RouteConstant.Sum] 
-        },
-        { "Concatenation", [ 
-            RouteConstant.Concat] 
-        },
-        { "Element", [ 
-            RouteConstant.First,
-            RouteConstant.FirstOrDefault,
-            RouteConstant.Last,
-            RouteConstant.LastOrDefault,
-            RouteConstant.Single,
-            RouteConstant.SingleOrDefault] 
-        },
-        { "Filtering", [ 
-            RouteConstant.Distinct,
-            RouteConstant.Skip,
-            RouteConstant.Take,
-            RouteConstant.Where] 
-        },
-        { "Grouping", [ "GroupBy" ] },
-        { "Merging", [ "GroupJoin", "Join", "Zip" ] },
-        { "Order", [ "Order", "OrderDescending" ] },
-        { "Projection", [ "Select", "SelectMany" ] },
-        { "Quantification", [ "All", "Any", "Contains", "SequenceEqual" ] },
-        { "Sequence", [ "Chunk" ] },
-        { "Set", [ "Except", "Intersect", "Union" ] },
-    }.ToFrozenDictionary();
 }
