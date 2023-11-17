@@ -13,7 +13,7 @@
             <MudNavGroup Title="@group.Key" Expanded="@true">
             @foreach (var link in filteredLinks)
             {
-                <MudNavLink Href="@FormatLinkHref(link)">@link</MudNavLink>
+                <MudNavLink Href="@link">@(link.GetPathTitle())</MudNavLink>
             }
             </MudNavGroup>
         }
@@ -28,10 +28,33 @@
 
     private static readonly FrozenDictionary<string, string[]> NavGroups = new Dictionary<string, string[]>
     {
-        { "Aggregation", ["Aggregate", "Average", "Count", "Max", "MaxBy", "Min", "MinBy", "Sum"] },
-        { "Concatenation", [ "Concat" ] },
-        { "Element", [ "First", "FirstOrDefault", "Last", "LastOrDefault", "Single", "SingleOrDefault" ] },
-        { "Filtering", [ "Distinct", "Skip", "Take", "Where" ] },
+        { "Aggregation", [
+            RouteConstant.Aggregate, 
+            RouteConstant.Average, 
+            RouteConstant.Count, 
+            RouteConstant.Max, 
+            RouteConstant.MaxBy, 
+            RouteConstant.Min, 
+            RouteConstant.MinBy,
+            RouteConstant.Sum] 
+        },
+        { "Concatenation", [ 
+            RouteConstant.Concat] 
+        },
+        { "Element", [ 
+            RouteConstant.First,
+            RouteConstant.FirstOrDefault,
+            RouteConstant.Last,
+            RouteConstant.LastOrDefault,
+            RouteConstant.Single,
+            RouteConstant.SingleOrDefault] 
+        },
+        { "Filtering", [ 
+            RouteConstant.Distinct,
+            RouteConstant.Skip,
+            RouteConstant.Take,
+            RouteConstant.Where] 
+        },
         { "Grouping", [ "GroupBy" ] },
         { "Merging", [ "GroupJoin", "Join", "Zip" ] },
         { "Order", [ "Order", "OrderDescending" ] },
@@ -40,6 +63,4 @@
         { "Sequence", [ "Chunk" ] },
         { "Set", [ "Except", "Intersect", "Union" ] },
     }.ToFrozenDictionary();
-
-    private string FormatLinkHref(string link) => "/" + string.Concat(link.Select((c, i) => i > 0 && char.IsUpper(c) ? "-" + c : c.ToString())).ToLower();
 }
