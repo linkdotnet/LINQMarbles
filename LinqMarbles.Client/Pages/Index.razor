@@ -1,0 +1,48 @@
+﻿@page "/"
+@page "/{GroupName}"
+
+<MudGrid Spacing="3" Justify="Justify.Center">
+    @foreach (var route in _routeList)
+    {
+        <MudItem xs=6>
+            <MudCard>
+                <MudCardContent>
+                    <MudText>@route.GetPathTitle()</MudText>
+                    <MudText Typo="Typo.body2">Description</MudText>
+                </MudCardContent>
+                <MudCardActions>
+                    <MudLink Href="@route.ToLower()">Read</MudLink>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    }
+    <MudItem>
+        <MudPaper Height="140px" Width="140px"/>
+    </MudItem>
+    <MudItem>
+        <MudPaper Height="140px" Width="140px"/>
+    </MudItem>
+    <MudItem>
+        <MudPaper Height="140px" Width="140px"/>
+    </MudItem>
+</MudGrid>
+
+@code {
+
+    [Parameter] 
+    public string? GroupName { get; set; }
+
+    private List<string> _routeList = new List<string>();
+
+    protected override void OnInitialized()
+    {
+        _routeList = GroupName is null ? 
+            RouteConstant.NavGroups.Keys.ToList() : 
+            RouteConstant.GetAllRoutes()
+                .Where(x => x.Contains(GroupName.ToLower()))
+                .ToList();
+        
+        base.OnInitialized();
+    }
+
+}
