@@ -1,11 +1,12 @@
 ﻿@using System.Collections.Frozen
+
 <MudNavGroup Title="Operators" Expanded="@true">
     <MudNavLink Match="@NavLinkMatch.All">
         <MudTextField Variant="Variant.Text" @bind-Value="_searchTerm" Placeholder="Search Operator"
                       Style="max-width: 90%"/>
     </MudNavLink>
 
-    @foreach (var group in NavGroups)
+    @foreach (var group in Routes.NavGroup)
     {
         var filteredLinks = group.Value.Where(link => link.Contains(_searchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
         if (filteredLinks.Any())
@@ -13,7 +14,7 @@
             <MudNavGroup Title="@group.Key" Expanded="@true">
             @foreach (var link in filteredLinks)
             {
-                <MudNavLink Href="@FormatLinkHref(link)">@link</MudNavLink>
+                <MudNavLink Href="@(Routes.FormatLinkHref(link))">@link</MudNavLink>
             }
             </MudNavGroup>
         }
@@ -25,21 +26,4 @@
 </MudNavGroup>
 @code {
     private string _searchTerm = string.Empty;
-
-    private static readonly FrozenDictionary<string, string[]> NavGroups = new Dictionary<string, string[]>
-    {
-        { "Aggregation", ["Aggregate", "Average", "Count", "Max", "MaxBy", "Min", "MinBy", "Sum"] },
-        { "Concatenation", [ "Concat" ] },
-        { "Element", [ "First", "FirstOrDefault", "Last", "LastOrDefault", "Single", "SingleOrDefault" ] },
-        { "Filtering", [ "Distinct", "Skip", "Take", "Where" ] },
-        { "Grouping", [ "GroupBy" ] },
-        { "Merging", [ "GroupJoin", "Join", "Zip" ] },
-        { "Order", [ "Order", "OrderDescending" ] },
-        { "Projection", [ "Select", "SelectMany" ] },
-        { "Quantification", [ "All", "Any", "Contains", "SequenceEqual" ] },
-        { "Sequence", [ "Chunk" ] },
-        { "Set", [ "Except", "Intersect", "Union" ] },
-    }.ToFrozenDictionary();
-
-    private string FormatLinkHref(string link) => "/" + string.Concat(link.Select((c, i) => i > 0 && char.IsUpper(c) ? "-" + c : c.ToString())).ToLower();
 }
