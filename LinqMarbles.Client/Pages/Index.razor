@@ -1,0 +1,63 @@
+﻿@page "/"
+
+<MudPaper Class="d-flex py-4" Elevation="0" Style="color: white; background-color: transparent">
+    @if (_selectedGroup is not null)
+    {
+        <MudIconButton Icon="@Icons.Material.Filled.ArrowBack" OnClick="(() => Return())"></MudIconButton>
+    }
+</MudPaper>
+
+
+
+<MudGrid Spacing="4" Justify="Justify.FlexStart" Class="align-stretch">
+    @if(_selectedGroup is null)
+    {
+        @foreach (var group in Routes.NavGroup.Keys)
+        {
+            <MudItem xs="6" md="4">
+                <MudButton OnClick="(() => SelectGroup(group))"
+                           FullWidth="true"
+                           Color="Color.Primary"
+                           Size="Size.Large"
+                           Variant="Variant.Filled">
+                    <MudPaper Class="d-flex py-8" Elevation="0" Style="color: white; background-color: transparent">
+                           @group
+                    </MudPaper>
+                </MudButton>
+            </MudItem>
+            
+        }
+    }
+    else
+    {
+        @foreach (var link in Routes.NavGroup[_selectedGroup])
+        {
+            <MudItem xs="6" md="4">
+                <MudButton Href="@Routes.FormatLinkHref(link)"
+                           FullWidth="true"
+                           Color="Color.Primary"
+                           Variant="Variant.Filled">
+                    <MudPaper Class="d-flex py-8" Elevation="0" Style="color: white; background-color: transparent">
+                        @link
+                    </MudPaper>
+                </MudButton>
+            </MudItem>
+        }
+    }
+</MudGrid>
+
+@code {
+    private string? _selectedGroup;
+
+    private void SelectGroup(string group)
+    {
+        _selectedGroup = group;
+        StateHasChanged();
+    }
+
+    private void Return()
+    {
+        _selectedGroup = null;
+        StateHasChanged();
+    }
+}
