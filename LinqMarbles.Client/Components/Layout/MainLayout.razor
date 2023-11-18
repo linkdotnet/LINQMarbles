@@ -9,7 +9,9 @@
         <MudHidden Breakpoint="Breakpoint.MdAndDown" Invert="true">
             <MudIconButton Icon="@Icons.Material.Filled.Menu" Edge="Edge.Start" Color="Color.Inherit" OnClick="@(() => _drawerOpen = !_drawerOpen)"/>
         </MudHidden>
-        <MudImage Src="favicon.png" Alt="logo" Width="30"/>
+        <MudLink Href="/">
+            <MudImage Src="favicon.png" Alt="logo" Width="30" />
+        </MudLink>
         <MudHidden Breakpoint="Breakpoint.MdAndDown">
             <MudText Typo="Typo.h4">LINQ Marbles</MudText>
         </MudHidden>

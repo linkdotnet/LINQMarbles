@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.0.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34310.174
 MinimumVisualStudioVersion = 16.0.0.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinqMarbles", "LinqMarbles\LinqMarbles.csproj", "{768A11BE-74D9-4D0C-ACD1-76D7909AE17C}"
 EndProject
@@ -16,18 +16,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0BB8A685-4441-4559-B964-8B082E39AA58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BB8A685-4441-4559-B964-8B082E39AA58}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BB8A685-4441-4559-B964-8B082E39AA58}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{0BB8A685-4441-4559-B964-8B082E39AA58}.Debug|x64.Build.0 = Debug|Any CPU
-		{0BB8A685-4441-4559-B964-8B082E39AA58}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{0BB8A685-4441-4559-B964-8B082E39AA58}.Debug|x86.Build.0 = Debug|Any CPU
-		{0BB8A685-4441-4559-B964-8B082E39AA58}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0BB8A685-4441-4559-B964-8B082E39AA58}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0BB8A685-4441-4559-B964-8B082E39AA58}.Release|x64.ActiveCfg = Release|Any CPU
-		{0BB8A685-4441-4559-B964-8B082E39AA58}.Release|x64.Build.0 = Release|Any CPU
-		{0BB8A685-4441-4559-B964-8B082E39AA58}.Release|x86.ActiveCfg = Release|Any CPU
-		{0BB8A685-4441-4559-B964-8B082E39AA58}.Release|x86.Build.0 = Release|Any CPU
 		{768A11BE-74D9-4D0C-ACD1-76D7909AE17C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{768A11BE-74D9-4D0C-ACD1-76D7909AE17C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{768A11BE-74D9-4D0C-ACD1-76D7909AE17C}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -40,6 +28,18 @@ Global
 		{768A11BE-74D9-4D0C-ACD1-76D7909AE17C}.Release|x64.Build.0 = Release|Any CPU
 		{768A11BE-74D9-4D0C-ACD1-76D7909AE17C}.Release|x86.ActiveCfg = Release|Any CPU
 		{768A11BE-74D9-4D0C-ACD1-76D7909AE17C}.Release|x86.Build.0 = Release|Any CPU
+		{0BB8A685-4441-4559-B964-8B082E39AA58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BB8A685-4441-4559-B964-8B082E39AA58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BB8A685-4441-4559-B964-8B082E39AA58}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0BB8A685-4441-4559-B964-8B082E39AA58}.Debug|x64.Build.0 = Debug|Any CPU
+		{0BB8A685-4441-4559-B964-8B082E39AA58}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0BB8A685-4441-4559-B964-8B082E39AA58}.Debug|x86.Build.0 = Debug|Any CPU
+		{0BB8A685-4441-4559-B964-8B082E39AA58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BB8A685-4441-4559-B964-8B082E39AA58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BB8A685-4441-4559-B964-8B082E39AA58}.Release|x64.ActiveCfg = Release|Any CPU
+		{0BB8A685-4441-4559-B964-8B082E39AA58}.Release|x64.Build.0 = Release|Any CPU
+		{0BB8A685-4441-4559-B964-8B082E39AA58}.Release|x86.ActiveCfg = Release|Any CPU
+		{0BB8A685-4441-4559-B964-8B082E39AA58}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
